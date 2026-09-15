@@ -1,0 +1,921 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="가영의 컨닝 페이퍼">
+<meta property="og:description" content="AI 컨닝데이 2026 · 내 워크플로우, 빌더 조쉬 세션, 테이블 토크 12문제, AI 툴 정리">
+<meta property="og:image" content="https://krrfactory.github.io/cheatsheet/og.png">
+<meta property="og:url" content="https://krrfactory.github.io/cheatsheet/">
+<meta name="twitter:card" content="summary_large_image">
+<style>[hidden]{display:none!important}</style>
+<title>가영의 컨닝 페이퍼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --ink:#332d2b; --ink-sunken:#262220; --ink-raised:#3d3734;
+  --paper:#f4f2ec; --muted:#a8a09b; --line:#4b4441;
+  --orange:#fd5b27; --orange-hi:#ff7a4a; --on-orange:#262220;
+  --measure:42rem;
+  --font:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+/* 컨닝데이 사이트와 같은 다크 단일 테마 */
+html{color-scheme:dark}
+body{margin:0;background:var(--ink);color:var(--muted);font-family:var(--font);font-size:17.6px;line-height:1.8;-webkit-font-smoothing:antialiased;word-break:keep-all}
+*{box-sizing:border-box}
+a{color:inherit}
+
+/* ── 상단 탭 ── */
+nav.top{position:sticky;top:0;z-index:10;background:var(--ink-sunken);border-bottom:1px solid var(--line)}
+nav.top .in{max-width:64rem;margin:0 auto;padding:0 20px;display:flex;align-items:stretch;gap:1.6rem;height:56px;overflow-x:auto;scrollbar-width:none}
+nav.top .in::-webkit-scrollbar{display:none}
+nav.top .brand{color:var(--paper);font-weight:800;font-size:13px;letter-spacing:.14em;white-space:nowrap;text-decoration:none;margin-right:auto;display:flex;align-items:center}
+nav.top button.t{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;letter-spacing:.06em;white-space:nowrap;padding:0 2px;cursor:pointer}
+nav.top button.t b{color:var(--orange-hi);font-weight:800;margin-right:.35em}
+nav.top button.t:hover,nav.top button.t:focus-visible{color:var(--paper);outline:none}
+nav.top button.t[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--orange)}
+
+/* ── 히어로 ── */
+.hero{background:var(--orange);color:var(--on-orange)}
+.hero .in{max-width:64rem;margin:0 auto;padding:56px 20px 48px}
+.hero .eyebrow{color:var(--on-orange);opacity:.85}
+.hero h1{font-size:clamp(38px,7vw,64px);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin:.35rem 0 .8rem;color:var(--on-orange);text-wrap:balance}
+.hero .sub{font-size:19px;font-weight:700;color:var(--on-orange);margin:0 0 .4rem}
+.hero p{max-width:var(--measure);color:#3a2a24;margin:0;font-size:17px}
+
+/* ── 본문 ── */
+main{max-width:64rem;margin:0 auto;padding:0 20px 80px}
+section.part{padding:56px 0 24px}
+.eyebrow{font-size:11.2px;font-weight:800;letter-spacing:.16em;color:var(--orange-hi);text-transform:uppercase;margin:0 0 .5rem}
+h2{font-size:clamp(26px,4.2vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.25;color:var(--paper);margin:0 0 .6rem;text-wrap:balance}
+p.lede{max-width:var(--measure);color:var(--paper);font-size:18px;margin:0 0 .6rem}
+h3{font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--orange-hi);margin:2.8rem 0 .6rem}
+h3 + p, h3 + ol, h3 + ul{margin-top:0}
+p{max-width:var(--measure);margin:0 0 1rem}
+strong,b{color:var(--paper);font-weight:700}
+ol.steps,ul.ls{max-width:var(--measure);padding-left:1.3em;margin:0 0 1rem}
+ol.steps li,ul.ls li{margin:0 0 .6rem;padding-left:.2em}
+ol.steps li::marker{color:var(--orange-hi);font-weight:700}
+ul.ls li::marker{color:var(--orange-hi)}
+ul.jobs{list-style:none;padding:0;margin:0 0 1rem;max-width:var(--measure)}
+ul.jobs li{padding:14px 0;border-top:1px solid var(--line)}
+ul.jobs li:last-child{border-bottom:1px solid var(--line)}
+ul.jobs .n{display:block;color:var(--paper);font-weight:700;margin-bottom:3px}
+ul.jobs .n small{color:var(--orange-hi);font-weight:800;font-size:11px;letter-spacing:.12em;margin-right:.6em}
+ul.jobs .c{display:block;font-size:16.5px}
+blockquote{max-width:var(--measure);margin:1.6rem 0;padding:0;color:var(--paper);font-size:19px;font-weight:500;line-height:1.65}
+blockquote::before{content:"“";color:var(--orange-hi);font-size:1.4em;line-height:0;margin-right:.15em;vertical-align:-.25em}
+blockquote.sm{font-size:17px;margin:.8rem 0 1rem}
+blockquote cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:.5rem;letter-spacing:.04em}
+.tbl{overflow-x:auto;margin:0 0 1rem;max-width:var(--measure)}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.55}
+th{text-align:left;color:var(--orange-hi);font-size:11.5px;letter-spacing:.1em;font-weight:800;padding:8px 12px 8px 0;border-bottom:1px solid var(--orange-hi);white-space:nowrap}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+td:first-child{color:var(--paper);font-weight:500}
+td b{color:var(--orange-hi)}
+.mark{color:var(--orange-hi);font-weight:700}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1rem;max-width:var(--measure)}
+.chips span{border:1px solid var(--line);color:var(--paper);font-size:13px;font-weight:700;padding:5px 11px;border-radius:2px;white-space:nowrap}
+ol.steps.lined{padding-left:0;list-style:none;counter-reset:st}
+ol.steps.lined li{counter-increment:st;position:relative;padding:12px 0 12px 4.6em;margin:0;border-top:1px solid var(--line);font-size:15px;line-height:1.65}
+ol.steps.lined li:last-child{border-bottom:1px solid var(--line)}
+ol.steps.lined li::before{content:"STEP " counter(st);position:absolute;left:0;top:14px;color:var(--orange-hi);font-weight:800;font-size:11.5px;letter-spacing:.08em;line-height:1.6}
+ol.steps.lined li > b{display:block;font-size:15.5px}
+ol.steps.lined .sub{display:block;color:var(--paper);font-size:14px;line-height:1.7;margin:6px 0 6px;padding-left:12px;border-left:2px solid var(--line)}
+hr.sep{border:0;border-top:1px solid var(--line);max-width:var(--measure);margin:2.4rem 0 0}
+.sum{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.sum .pill{border-radius:999px;padding:12px 18px;text-align:center;background:var(--ink-raised);color:var(--paper);display:flex;flex-direction:column;justify-content:center}
+.sum .pill.hi{background:var(--orange);color:var(--on-orange)}
+.sum .pill i{display:block;font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.08em;opacity:.75;margin-bottom:2px}
+.sum .pill b{display:block;font-size:15.5px;line-height:1.3;color:inherit}
+.sum .col{display:grid;grid-template-rows:auto 1fr;gap:8px}
+.sum .box{padding:12px 14px;text-align:center;display:flex;align-items:center;justify-content:center}
+.sum .box span{font-size:13.5px;line-height:1.5}
+.sum .plus{display:flex;align-items:center;color:var(--orange-hi);font-weight:800;font-size:26px}
+.ret{position:relative;height:26px;margin:0 3.2em 0 3.2em;border:2px solid var(--orange-hi);border-top:0}
+.ret::before{content:"";position:absolute;left:-8px;top:-9px;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:10px solid var(--orange-hi)}
+.ret span{position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);background:var(--ink-sunken);padding:0 10px;font-size:12.5px;font-weight:700;color:var(--orange-hi);white-space:nowrap}
+.ret-note{display:none}
+/* 용어 */
+.gloss{max-width:var(--measure);display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 1rem}
+.gloss div{background:var(--ink-sunken);border:1px solid var(--line);padding:10px 12px;font-size:14px;line-height:1.55}
+.gloss b{display:block;color:var(--paper)}
+
+/* ── 도식 공통 ── */
+.dg{max-width:var(--measure);background:var(--ink-sunken);border:1px solid var(--line);padding:20px;margin:0 0 1.2rem;font-size:14.5px;line-height:1.5}
+.dg .cap{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--orange-hi);margin:0 0 14px}
+.dg .note{color:var(--muted);font-size:13px;margin:12px 0 0}
+.box{background:var(--ink-raised);border:1px solid var(--line);color:var(--paper);padding:10px 12px;font-weight:500}
+.box small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:2px}
+.box.hi{border-color:var(--orange);background:var(--orange);color:var(--on-orange)}
+.box.hi small{color:#3a2a24}
+.box.ghost{background:transparent;border-style:dashed;color:var(--muted)}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.chain .box{flex:1 1 5.6em;font-size:13.5px;min-width:0;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.chain .arr{display:flex;align-items:center;color:var(--orange-hi);font-weight:800;font-size:18px;padding:0 2px}
+.layers{display:grid;gap:8px}
+.layers .row{display:grid;grid-template-columns:5.5em 1fr;gap:10px;align-items:stretch}
+.layers .k{background:var(--orange);color:var(--on-orange);font-weight:800;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;text-align:center;font-size:14px;letter-spacing:.04em}
+.layers .k small{font-size:10px;font-weight:700;letter-spacing:.14em;opacity:.8}
+.layers .v{background:var(--ink-raised);border:1px solid var(--line);padding:10px 12px;color:var(--paper)}
+.layers .v small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.layers .between{color:var(--orange-hi);font-size:12.5px;font-weight:700;padding:0 0 0 calc(5.5em + 22px);line-height:1.2}
+.rail{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.rail .st{flex:1 1 6.5em;border:1px solid var(--line);padding:8px 8px 10px;background:var(--ink-raised);color:var(--paper);font-size:13px;text-align:center}
+.rail .st i{display:block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.08em;margin-top:6px}
+.rail .done{color:var(--muted)} .rail .done i{color:var(--muted)}
+.rail .now{border-color:var(--orange);background:var(--orange);color:var(--on-orange)} .rail .now i{color:var(--on-orange)}
+.rail .late{border-color:var(--orange-hi)} .rail .late i{color:var(--orange-hi)}
+.rail .todo i{color:var(--muted)}
+.loop{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.loop .box{text-align:center}
+.loop .arr{color:var(--orange-hi);font-weight:800;font-size:18px;text-align:center}
+.loop .back{grid-column:1/-1;text-align:center;color:var(--orange-hi);font-size:12.5px;font-weight:700;border-top:1px dashed var(--orange-hi);padding-top:6px;margin-top:2px}
+.stack{display:grid;gap:6px}
+.stack .box{display:grid;grid-template-columns:9.5em 1fr;gap:12px;align-items:center}
+.stack .box b{color:var(--orange-hi);font-size:12px;letter-spacing:.08em;font-weight:800}
+.stack .box span{font-size:14px;color:var(--paper)}
+.stack .box span small{display:block;color:var(--muted);font-size:12.5px}
+.gate{display:grid;gap:8px}
+.gate .fork{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gate .fork .box{text-align:center}
+.gate .fork .no{border-color:var(--orange-hi);color:var(--orange-hi);background:transparent}
+.quad{display:grid;grid-template-columns:6.5em 1fr 1fr;gap:6px;align-items:stretch}
+.quad .ax{color:var(--orange-hi);font-size:11.5px;font-weight:800;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;text-align:center}
+.quad .box{text-align:center;min-height:4.2em;display:flex;align-items:center;justify-content:center}
+.stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;align-items:end}
+.stairs .box{text-align:center;padding:10px 8px;display:flex;flex-direction:column;justify-content:flex-start;box-sizing:border-box}
+.stairs .s1{height:7em}.stairs .s2{height:8.5em}.stairs .s3{height:10em}.stairs .s4{height:11.5em;background:var(--orange);color:var(--on-orange)}
+.stairs .s4 b{color:var(--on-orange)} .stairs .s4 small{color:#3a2a24}
+.stairs .box b{display:block;color:var(--orange-hi);font-size:11px;letter-spacing:.1em;margin-bottom:4px}
+.stairs .box small{font-size:12px;line-height:1.4}
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tl .box b{display:block;color:var(--orange-hi);font-size:11px;letter-spacing:.1em;margin-bottom:4px}
+.tl .box{font-size:13.5px;line-height:1.5}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch}
+.vs.flow{grid-template-columns:1fr auto 1fr}
+.vs .arr{display:flex;align-items:center;color:var(--orange-hi);font-weight:800;font-size:22px}
+.vs .col{display:grid;grid-template-rows:auto 1fr;gap:8px}
+.vs .pill{border-radius:999px;padding:12px 18px;text-align:center;background:var(--ink-raised);color:var(--paper);min-height:5.2em;display:flex;flex-direction:column;justify-content:center}
+.vs .pill.hi{background:var(--orange);color:var(--on-orange)}
+.vs .pill i{display:block;font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.08em;opacity:.75;margin-bottom:2px}
+.vs .pill b{display:block;font-size:15.5px;line-height:1.3;color:inherit}
+.vs .box{display:flex;flex-direction:column;gap:6px;padding:14px}
+.vs .box span{font-size:13.5px;line-height:1.5;padding-left:12px;position:relative}
+.vs .box span::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;background:var(--orange-hi)}
+.prob{max-width:var(--measure);background:var(--ink-sunken);border:1px solid var(--line);padding:18px 18px 8px;margin:0 0 12px}
+.prob h4{margin:0 0 .8rem;color:var(--paper);font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.prob h4 span{color:var(--orange-hi);font-weight:800;margin-right:.5em}
+.prob .kv{display:grid;grid-template-columns:7.4em 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.6}
+.prob .kv > b{color:var(--orange-hi);font-size:12.5px;font-weight:800;letter-spacing:.06em;padding-top:4px;white-space:nowrap}
+.prob .kv p{margin:0 0 .4rem;font-size:15px}
+.prob .kv p:last-child,.prob .kv ul:last-child,.prob .kv ol:last-child{margin-bottom:0}
+.prob .kv ul,.prob .kv ol{margin:0 0 .4rem;padding-left:1.2em}
+.prob .kv li{margin:0 0 .3rem}
+.prob .kv li::marker{color:var(--orange-hi)}
+.prob .kv blockquote{margin:.4rem 0 .6rem;font-size:15.5px}
+.prob .kv .tbl{margin:0}
+.prob .kv table{font-size:14px}
+.fail{max-width:var(--measure);margin:0 0 1rem;font-size:16px}
+.fail div{display:grid;grid-template-columns:4.4em 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.fail div:last-child{border-bottom:1px solid var(--line)}
+.fail .d{color:var(--orange-hi);font-weight:800;font-size:12px;letter-spacing:.08em;padding-top:5px}
+.fail .fix{color:var(--paper)}
+
+/* 04 카드 */
+.cards{max-width:var(--measure);display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 1rem}
+.card{background:var(--ink-sunken);border:1px solid var(--line);padding:16px 16px 14px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6}
+.card .nm{color:var(--paper);font-weight:700;font-size:17px;letter-spacing:-.01em;line-height:1.3}
+.card .nm em{font-style:normal;color:var(--orange-hi);font-size:11px;font-weight:800;letter-spacing:.1em;margin-left:.5em;vertical-align:middle}
+.card .kv{display:grid;grid-template-columns:3.4em 1fr;gap:6px}
+.card .kv b{color:var(--orange-hi);font-size:11px;font-weight:800;letter-spacing:.1em;padding-top:4px}
+.card .kv span{color:var(--muted)}
+.card .kv span strong{color:var(--paper)}
+.card a.lk{margin-top:auto;padding-top:6px;color:var(--paper);font-size:13px;font-weight:700;text-decoration:none;border-top:1px solid var(--line)}
+.card a.lk:hover{color:var(--orange-hi)}
+.card a.lk::after{content:" ↗";color:var(--orange-hi)}
+footer{max-width:64rem;margin:0 auto;padding:28px 20px 64px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+footer b{color:var(--paper)}
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .hero .in{padding:40px 16px 36px}
+  main{padding:0 16px 64px}
+  nav.top .in{padding:0 16px;gap:1.1rem}
+  section.part{padding:44px 0 16px}
+  .fail div{grid-template-columns:4.4em 1fr}
+  .prob .kv{grid-template-columns:1fr;gap:2px}
+  .prob{padding:14px 14px 6px}
+  .dg{padding:14px}
+  .chain{flex-direction:column}
+  .ret{display:none}
+  .ret-note{display:block}
+  .chain .box{flex-basis:auto}
+  .chain .arr{justify-content:center;transform:rotate(90deg);padding:0}
+  .loop{grid-template-columns:1fr}
+  .loop .arr{transform:rotate(90deg)}
+  .stack .box{grid-template-columns:1fr;gap:4px}
+  .quad{grid-template-columns:4.5em 1fr 1fr}
+  .stairs{grid-template-columns:repeat(2,1fr)}
+  .stairs .box{height:auto;min-height:6em}
+  .tl{grid-template-columns:1fr}
+  .vs,.vs.flow{grid-template-columns:1fr}
+  .sum{grid-template-columns:1fr}
+  .sum .plus{justify-content:center}
+  .vs .arr{justify-content:center;transform:rotate(90deg)}
+  .layers .row{grid-template-columns:4.5em 1fr}
+  .layers .between{padding-left:calc(4.5em + 22px)}
+  .cards{grid-template-columns:1fr}
+  .gloss{grid-template-columns:1fr}
+}
+</style></head><body>
+
+<nav class="top"><div class="in" role="tablist" aria-label="파트">
+  <a class="brand" href="#p1">CHEAT SHEET</a>
+  <button class="t" role="tab" data-tab="p1" id="tab-p1" aria-controls="p1"><b>01</b>내 워크플로우</button>
+  <button class="t" role="tab" data-tab="p2" id="tab-p2" aria-controls="p2"><b>02</b>강연</button>
+  <button class="t" role="tab" data-tab="p3" id="tab-p3" aria-controls="p3"><b>03</b>테이블 토크</button>
+  <button class="t" role="tab" data-tab="p4" id="tab-p4" aria-controls="p4"><b>04</b>Appendix</button>
+</div></nav>
+
+<header class="hero"><div class="in">
+  <div class="eyebrow">AI Cheating Day 2026 · 09.12</div>
+  <h1>가영의 컨닝 페이퍼</h1>
+  <p class="sub">이가영 · 꺄르르팩토리 대표 · 비개발자</p>
+</div></header>
+
+<main>
+
+<!-- ═══════════ 01 ═══════════ -->
+<section class="part" id="p1" role="tabpanel" aria-labelledby="tab-p1">
+  <div class="eyebrow">01 / Workflow</div>
+  <h2>담당자의 암묵지를 형식지로</h2>
+
+  <h3>먼저 알아둘 말 여섯 개</h3>
+  <div class="gloss">
+    <div><b>Claude Code</b>말로 시키면 파일을 읽고 쓰고 코드를 만드는 AI. 터미널, 즉 검은 명령 창에서 돌아간다</div>
+    <div><b>세션</b>Claude Code를 켜서 일을 시키는 창 하나. 창을 닫으면 그 안의 기억은 사라진다</div>
+    <div><b>Codex</b>OpenAI의 코딩 AI. 여기서는 Claude가 만든 것을 검토하는 용도로만 쓴다</div>
+    <div><b>에이전트 · 봇</b>사람이 안 시켜도 정해진 조건에서 스스로 일하는 AI</div>
+    <div><b>볼트</b>메모 앱 옵시디언의 폴더 하나. 회사의 모든 문서를 여기에 둔다</div>
+    <div><b>스킬</b>자주 하는 일의 순서를 미리 적어 둔 지시서. AI가 그때그때 꺼내 쓴다</div>
+  </div>
+
+  <h3>원래 무엇이 불편했나</h3>
+  <p>매달 고정으로 운영하는 브랜드가 8개. 브랜드마다 일하는 순서와 판단 기준이 다른데, 그게 담당자 머릿속에만 있고 문서에는 없었다. 담당자가 바뀌면 다음 사람은 처음부터 배웠고, 그 사이에 단계가 하나씩 빠졌다.</p>
+  <p>AI를 붙여도 같은 문제가 생겼다. 같은 일을 시켜도 세션마다 기준이 달라 지난달과 다른 보고서가 나왔다. 그래서 목표를 속도가 아니라 <b>사람이 바뀌어도, 세션이 바뀌어도 같은 순서·같은 기준으로 도는 것</b>으로 잡았다.</p>
+
+  <h3>무엇으로 이루어져 있나</h3>
+  <p>가운데에 문서를 두고, 두 종류의 AI가 그 문서를 읽고 쓴다. 두뇌는 판단하고 문서를 쓰는 AI, 손발은 정해진 시간에 실행하고 수집하는 AI.</p>
+  <div class="dg">
+    <div class="cap">구조 | 세 층</div>
+    <div class="layers">
+      <div class="row"><div class="k">두뇌<small>SESSIONS</small></div><div class="v">Claude Code 세션 2개 + Codex<small>비서 세션은 회의·문서, 개발 세션은 대시보드 코드, Codex는 검토만. 정해진 시간에 자동 실행되는 세션이 신고를 처리</small></div></div>
+      <div class="between">↕ 읽고 씀</div>
+      <div class="row"><div class="k">기억<small>MEMORY</small></div><div class="v">옵시디언 볼트 하나가 원본<small>브랜드별 규칙인 콘텐츠 공식·디자인 기준·DM 답변 기준·AI로 해도 되는 것 · 회의록 · 할 일 · 사고 기록. 매일 자동 백업</small></div></div>
+      <div class="between">↕ 읽고 씀</div>
+      <div class="row"><div class="k">손발<small>AGENTS</small></div><div class="v">텔레그램 봇 오픈클로 + 자동 작업 22개<small>알림 · 당첨자 선정 · 메일 확인 · 광고 수치 수집 · 녹음 감시 · 자동 백업. 맥북 한 대가 24시간 서버</small></div></div>
+    </div>
+  </div>
+
+  <h3>실제로 자동으로 하는 일</h3>
+  <ul class="jobs">
+    <li><span class="n"><small>보고</small>월간 결과보고서</span><span class="c">인스타그램 수치를 매일 두 번 자동 수집. 달이 끝나면 브랜드 양식 그대로 22쪽 PPT를 만들고, 검사 12개를 통과해야 내려받을 수 있다.</span></li>
+    <li><span class="n"><small>광고 보고</small>광고비 인보이스 → 브랜드 광고 보고서</span><span class="c">메타 광고 인보이스 PDF를 올리면 소재 이미지·소재 내용·비용·기간·도달 등 수치를 읽어 클라이언트 양식의 광고 보고서로 만든다.</span></li>
+    <li><span class="n"><small>모니터링</small>부정 언급 보고서</span><span class="c">매일 네이버 블로그, 매주 X·스레드에서 브랜드 언급을 모아 AI가 부정적인 글을 골라내고, 화면 캡처가 붙은 엑셀을 만든다.</span></li>
+    <li><span class="n"><small>이벤트</small>당첨자 선정 → 취합 → 발표</span><span class="c">게시물 주소를 넣으면 댓글을 모아 지난 당첨자를 빼고 뽑는다. 취합 마감이 지나면 다음날 아침 메일 초안까지 만들어 둔다.</span></li>
+    <li><span class="n"><small>기획</small>월간 기획안 → 시안</span><span class="c">리서치와 회의 내용을 받아 기획안 초안을 쓰고, 주제와 참고 이미지를 넣으면 AI가 예시 이미지를 만들어 PPT로 묶는다.</span></li>
+    <li><span class="n"><small>수집</small>경쟁사·참고 계정 수집</span><span class="c">등록한 계정의 게시물을 모아 반응이 좋은 것을 점수로 매긴다.</span></li>
+    <li><span class="n"><small>광고</small>광고 초안</span><span class="c">게시물·목표·예산·기간을 넣으면 메타에 광고를 만든다. 단 <b>항상 일시정지 상태</b>로만. 켜는 것은 사람이 한다.</span></li>
+    <li><span class="n"><small>회의</small>녹음 → 회의록</span><span class="c">아이폰 녹음이 아이클라우드 폴더에 들어오면 자동으로 글로 옮기고, 오타를 고치고, 회의록·할 일·일정을 만들어 텔레그램으로 보낸다.</span></li>
+    <li><span class="n"><small>기억</small>야간 정리</span><span class="c">매일 저녁 그날 세션에서 헷갈렸던 것과 새로 안 것을 한 장으로 정리한다. 다음날 세션이 첫 번째로 읽는다.</span></li>
+  </ul>
+
+  <h3>한 달이 어떻게 도나 | 운영 레일</h3>
+  <p>위의 일들을 한 달의 순서 위에 놓은 것이 운영 레일. 브랜드마다 6~9단계, 시스템이 매달 각 단계의 상태를 계산한다.</p>
+  <div class="dg">
+    <div class="cap">아동복 브랜드의 한 달 | 6단계</div>
+    <div class="rail">
+      <div class="st done">월간 기획안<i>완료</i></div>
+      <div class="st done">광고비 편성<i>완료</i></div>
+      <div class="st now">주차별 콘텐츠<i>지금 할 것</i></div>
+      <div class="st late">이벤트<i>마감 지남</i></div>
+      <div class="st todo">광고 보고<i>예정</i></div>
+      <div class="st todo">월간 보고서<i>예정</i></div>
+    </div>
+    <p class="note">화장품 브랜드는 요청 접수부터 인보이스까지 8단계. 브랜드마다 순서와 이름이 다르다.</p>
+  </div>
+  <ol class="steps lined">
+    <li><b>순서를 적는다.</b> 인수인계서, 지난 산출물, 클라이언트와 주고받은 메일에서 브랜드별 순서를 단계 목록으로 뽑는다.</li>
+    <li><b>완료의 조건을 정한다.</b> 단계마다 무엇이 있으면 끝난 것으로 볼지 정하고, Claude Code가 그것을 코드로 옮긴다. 코드로 옮기면 시스템이 매달 그 조건대로 스스로 확인한다. 실제로 시킨 말은 "광고 보고 단계는 인보이스 PDF가 올라오면 완료로 표시해줘" 정도.<span class="sub">자동 완료 · 캘린더 등록처럼 데이터로 확인되는 단계<br>담당자 체크 · 클라이언트 컨펌처럼 판단이 필요한 단계</span></li>
+    <li><b>시스템이 상태를 보여준다.</b> 완료 / 지금 할 것 / 마감 지남. 단계를 누르면 그 자리에서 할 일이 열린다.</li>
+    <li><b>틀리면 신고한다.</b> 담당자가 신고 버튼을 누르면 화면 캡처가 자동으로 붙는다. 정해진 시간에 켜지는 세션이 원인을 찾아 고치고 신고를 닫는다.</li>
+    <li><b>못 고친 것만 사람이 본다.</b><span class="sub">규칙 문서에 답이 없으면 · 문서를 고친다<br>답이 있는데 다르게 나왔으면 · 검사를 고친다</span></li>
+  </ol>
+  <div class="dg">
+    <div class="cap">신고 → 자동 수리</div>
+    <div class="gate">
+      <div class="chain">
+        <div class="box">담당자 신고<small>캡처 자동 첨부</small></div><div class="arr">→</div>
+        <div class="box">자동 세션이 원인 찾기<small>규칙 문서와 코드 대조</small></div><div class="arr">→</div>
+        <div class="box hi">고쳐서 반영<small>신고 닫힘, 대표는 결과만</small></div>
+      </div>
+      <div class="fork">
+        <div class="box">고친 것은 검사 항목이 되어 다음 달에 다시 걸러진다</div>
+        <div class="box ghost">못 고친 것만 사람에게<small>19건 중 1건</small></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>규칙은 세 층으로</h3>
+  <p>처음에는 규칙을 한 파일에 다 적었다. 수백 줄이 되자 AI가 읽고도 지키지 않는 일이 생겼다. 그래서 "언제 읽는가"로 나눴다.</p>
+  <div class="dg">
+    <div class="cap">규칙 | 언제 읽느냐로 나눔</div>
+    <div class="stack">
+      <div class="box"><b>항상 읽음</b><span>일하는 태도만<small>"확인 없이 됐다고 말하지 않기" · "큰 변경 전에 묻기" · "삭제하지 않고 옮기기"</small></span></div>
+      <div class="box"><b>특정 파일 만질 때</b><span>보고서·엑셀·PPT 규칙<small>"도달·좋아요 수치는 메타에서 내려받은 표 파일이 정답, 자동 연동 수치는 표가 없을 때만"</small></span></div>
+      <div class="box"><b>브랜드 이름 볼 때</b><span>그 브랜드의 상황 + 결정 기록<small>결정은 AI가 일하면서 날짜와 함께 한 줄 남긴다. 다음 세션이 같은 질문을 안 한다</small></span></div>
+    </div>
+    <p class="note">현재 공통 규칙 559줄, 브랜드 결정 451줄. 사람 팀원과 AI가 같은 문서를 본다.</p>
+  </div>
+
+  <h3>"됐다"를 사람 느낌이 아니라 코드 검사 통과로</h3>
+  <p>AI가 만든 보고서를 글자만 보고 "괜찮다"고 한 적이 세 번 있었다. 열어보니 이미지가 어긋나고 지난달 문장이 남아 있었다. 그 뒤로 "됐다"의 기준을 코드로 짜 둔 검사 통과로 바꿨다.</p>
+  <div class="dg">
+    <div class="cap">보고서가 나가기까지</div>
+    <div class="gate">
+      <div class="chain">
+        <div class="box">수치를 원본에서 다시 계산</div><div class="arr">→</div>
+        <div class="box">Claude가 생성</div><div class="arr">→</div>
+        <div class="box">Codex가 두 번 검토<small>수치·누락·양식</small></div><div class="arr">→</div>
+        <div class="box">이미지로 바꿔 지난 보고서와 한 장씩 비교</div><div class="arr">→</div>
+        <div class="box hi">검사 12개</div>
+      </div>
+      <div class="fork">
+        <div class="box">모두 통과 → 내려받기</div>
+        <div class="box no">하나라도 실패 → 내려받기 불가</div>
+      </div>
+    </div>
+    <p class="note">검사 12개는 전부 과거에 실제로 틀렸던 사례다. 새 실수가 나오면 검사가 하나 늘어난다.</p>
+  </div>
+
+  <h3>AI가 혼자 못 하게 막아둔 것</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>구분</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>승인만 요청</td><td>돈이 나가는 일 · 클라이언트에게 보내는 일 · 데이터를 지우는 일 → 텔레그램으로 물어봄</td></tr>
+      <tr><td>사람만</td><td>광고 켜기 · 클라이언트 발송 · 서버에 코드 올리기</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>결과 | 2026년 5월 → 9월</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>항목</th><th>전</th><th>후</th></tr></thead>
+    <tbody>
+      <tr><td>월간 보고서 수치 모으기</td><td>브랜드당 2시간+</td><td><b>10초</b></td></tr>
+      <tr><td>이벤트 선정·취합·보고</td><td>1시간</td><td>5분</td></tr>
+      <tr><td>보고서 생성</td><td>없음</td><td>4개월간 32개 달분, 수정본 포함 178건</td></tr>
+      <tr><td>담당자 신고</td><td>없음</td><td>19건 중 18건을 AI가 처리</td></tr>
+      <tr><td>개발자</td><td>0명</td><td>0명</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>어떤 순서로 만들었나</h3>
+  <div class="dg">
+    <div class="cap">4개월의 순서</div>
+    <div class="tl">
+      <div class="box"><b>1개월차</b>기능 하나. 수치 화면과 월간 보고서 생성. 검수는 전부 사람.</div>
+      <div class="box"><b>2~3개월차</b>기능이 늘수록 "사이"가 빠지는 게 보였다. 한 달에 일어나는 일을 순서대로 운영 레일에 놓았다.</div>
+      <div class="box"><b>3~4개월차</b>규칙이 한 파일에 쌓여 터졌다. 세 층으로 나누고, 신고 버튼을 담당자에게 열고, 자동 수리를 켰다.</div>
+    </div>
+    <p class="note">레일부터 거꾸로 만들면 안 된다. 기능이 있어야 사이가 보인다.</p>
+  </div>
+  <h3>사고장부 | 사고 하나가 한 줄</h3>
+  <p>AI가 틀린 일은 전부 사고장부에 적는다. 무엇이 잘못 나왔는지, 진짜 원인은 무엇이었는지, 다시 안 나게 무엇을 붙였는지. 현재 30번까지 있다.</p>
+  <p>규칙은 AI가 안 읽을 수 있지만 코드로 짜 둔 검사는 건너뛸 수 없다. 그래서 <b>같은 사고가 두 번 넘게 나면 규칙을 더 쓰지 않고 검사로 막는다.</b></p>
+  <div class="tbl"><table>
+    <thead><tr><th>사고</th><th>무엇이 잘못됐나</th><th>진짜 원인</th><th>막는 장치</th></tr></thead>
+    <tbody>
+      <tr><td>글자만 보고 "괜찮다"</td><td>AI가 만든 보고서를 세 번 연속 통과시켰는데, 열어보니 이미지가 어긋나고 지난달 문장이 남아 있었다</td><td>결과물을 열어보지 않고 AI가 쓴 "완료" 글자만 믿었다</td><td>보고서를 이미지로 바꿔 지난 보고서와 한 장씩 비교하는 것을 의무화</td></tr>
+      <tr><td>자동 세션끼리 충돌</td><td>오류 점검용 세션이 대표가 쓰던 세션의 파일을 덮어썼다. 며칠 뒤에는 요청하지 않은 화면을 서버에 올렸다</td><td>점검 세션에도 수정 권한이 있었다</td><td>점검 세션은 진단만 남기고 수정 금지. 서버 반영은 대표 세션과 정해진 시간의 개발 세션만</td></tr>
+      <tr><td>녹음 → 글 변환이 무한 반복</td><td>내 맥북에서 돌리는 무료 변환 도구가 같은 구절을 수백 번 적었다</td><td>도구의 알려진 버그. 조용한 구간에서 같은 말을 반복한다</td><td>변환이 끝나면 반복 구간을 자동으로 검사하고 지운다</td></tr>
+      <tr><td>서버 저장공간 100%</td><td>이미지가 쌓여 저장공간이 차고, 데이터 기록이 멈췄다</td><td>캐시 이미지를 지우는 규칙이 없었다</td><td>30일 지난 이미지는 자동 삭제. 80% 차면 텔레그램 경보</td></tr>
+      <tr><td>비밀 키가 깃허브에</td><td>설계 문서 안에 살아있는 API 키가 들어간 채 깃허브에 올라갔다</td><td>문서를 올리기 전에 키가 있는지 검사하지 않았다</td><td>키를 폐기하고 새로 발급. 올리기 전 자동으로 키 검사</td></tr>
+      <tr><td>무료 변환분 소진 → 멈춤</td><td>녹음 변환 무료분이 다 떨어지자 파이프라인이 그대로 멈췄다. 두 번 사람이 손으로 돌렸다</td><td>"무료분이 끝나면 내 맥북의 무료 도구로 넘어간다"가 규칙 문서에만 있고 코드에는 없었다</td><td>코드로 연결. 이제 무료분이 끝나면 자동으로 넘어간다</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>도구</h3>
+  <div class="chips tools"><span>Claude Code</span><span>Codex</span><span>Obsidian</span><span>GitHub</span><span>OpenClaw</span><span>Telegram</span><span>Manus</span><span>Apify</span><span>Google API</span><span>Whisper</span><span>Railway</span><span>Notion</span></div>
+</section>
+
+<!-- ═══════════ 02 ═══════════ -->
+<section class="part" id="p2" role="tabpanel" aria-labelledby="tab-p2" hidden>
+  <div class="eyebrow">02 / Session</div>
+  <h2>빌더 조쉬 | 정복당하지 않고 정복하는 방법</h2>
+  <p class="lede" style="margin-top:1.4rem">"AI를 잘 쓰는 사람을 어떻게 정의하시나요?" 잘 쓰는 사람은 분명히 있었지만, 쓰는 방법이 사람마다 다르다.</p>
+  <p class="lede">정의가 없는 영역에서는 기준을 따지기보다 남의 사례를 많이 보는 쪽이 빠르다. 그래서 이 자리는 배우는 자리가 아니라 컨닝하는 자리.</p>
+
+  <h3>먼저 알아둘 말 여덟 개</h3>
+  <div class="gloss">
+    <div><b>에이전트</b>목표를 주면 여러 단계를 스스로 수행하는 AI 작업자</div>
+    <div><b>해자</b>성 둘레에 판 도랑. 개발자만 넘을 수 있던 코딩이라는 장벽</div>
+    <div><b>지능 밀도</b>한 사람, 한 조직 안에서 AI가 얼마나 촘촘하게 일하고 있는가</div>
+    <div><b>월드 모델</b>슬랙·카톡·메일 등 회사의 모든 기록을 AI가 읽어 회사 전체를 이해하는 상태</div>
+    <div><b>거버넌스</b>누가 무엇을 할 수 있고 어떻게 통제하는지 정한 체계</div>
+    <div><b>LLMOps</b>AI를 계속 잘 돌아가게 운영·관리하는 일. 원래 엔지니어 용어</div>
+    <div><b>프라이빗 벤치마크</b>공개 순위표가 아니라 내 일, 내 기준으로 모델을 직접 비교하는 것</div>
+    <div><b>평가, Eval</b>기준을 두고 에이전트의 결과를 채점하는 것</div>
+  </div>
+
+  <h3>출발점이 된 기사</h3>
+  <p>OpenAI가 90년 된 수학 난제를 풀었다. 에이전트 1만 개를 병렬로 팀 그룹끼리 돌리고 자기들끼리 토론. 88시간, 약 130억 원. 광고 효과 치고는 싼 값.</p>
+  <p>여기서 볼 것은 결과가 아니라 질문. 1만 개의 에이전트를 왜 굳이 불렀지? 왜 1만 개가 필요하지? 쟤네들이 뭘 하는 거지?</p>
+
+  <h3>AI를 잘 쓰는 사람 vs 못 쓰는 사람</h3>
+  <div class="dg">
+    <div class="vs">
+      <div class="col">
+        <div class="pill hi"><i>잘 쓰는 사람</i><b>매일 테스트하는 사람</b></div>
+        <div class="box">
+          <span>머릿속에 늘 세 질문이 돈다</span>
+          <span>어디까지 할 수 있지?</span>
+          <span>뭐까지 할 수 있지?</span>
+          <span>내 업무에 뭘 어떻게 적용해볼 수 있지?</span>
+          <span>엔지니어처럼 해야만 잘 쓰는 것은 아니다. 사람을 이해하는 힘, 인문학적 사고도 중요</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="pill"><i>못 쓰는 사람</i><b>AI를 '생산성'으로만 인식하는 사람</b></div>
+        <div class="box ghost">
+          <span>"영상 편집 다 해줘요" 식의 이야기</span>
+          <span>그게 AI의 전부가 아니다</span>
+          <span>"클로드 코드나 코덱스만 쓰면 잘 쓰는 거지"도 같은 이유로 아니다</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>배경은 개발자의 해자가 자연어로 무너진 것. 언어 하나를 더 배우듯 1~3년 걸리던 코딩이, 지금은 말로 시키면 되는 사회.</p>
+
+  <h3>AI 활용 4단계</h3>
+  <div class="dg">
+    <div class="cap">AI 교육 회사 모션코리아의 장표</div>
+    <div class="stairs">
+      <div class="box s1"><b>1</b>대화<small>ChatGPT·제미나이·클로드와 한 번 대화</small></div>
+      <div class="box s2"><b>2</b>참조<small>메모리·md 파일·노션 DB를 AI가 읽음. 대부분 여기</small></div>
+      <div class="box s3"><b>3</b>팀원으로서의 AI<small>내 워크플로우 안에 에이전트가 한 명, 두 명</small></div>
+      <div class="box s4"><b>4</b>시스템으로서의 AI<small>사람이 아니라 AI가 회사의 중심</small></div>
+    </div>
+    <p class="note">대부분은 2단계에 머물고, 2에서 3으로 잘 못 넘어간다. 4단계는 조직 단위의 문제.</p>
+  </div>
+  <p>2026년 상반기, 전 IT 회사가 클로드 코드·코덱스 교육을 한 번씩 받았다. 개인 단에서는 다들 어느 정도 잘하는 시대. 못 하는 것은 조직 단위로 시스템 AI를 고민하는 지점.</p>
+
+  <h3>생산성이 아니라 지능으로</h3>
+  <div class="dg">
+    <div class="vs flow">
+      <div class="col">
+        <div class="pill"><i>과거 · 생산성으로 본다</i><b>AI는 내가 컴퓨터 앞에 앉아 있을 때만 존재한다</b></div>
+        <div class="box ghost">
+          <span>"내일 이 글 써야 하는데, 이 자료 넣어줄게. 정리해줘"</span>
+          <span>내가 시킨 만큼만 한다</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="col">
+        <div class="pill hi"><i>현재 · 지능으로 본다</i><b>내가 없어도 돌아가는 판을 세팅한다</b></div>
+        <div class="box">
+          <span>"우리가 없어도 얘가 스스로 뭔가 할 수 있지 않을까"</span>
+          <span>지능 밀도를 어떻게 높일 것인가를 고민한다</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p><b>지능 밀도.</b> AI를 생산성 도구가 아니라 지능으로 놓고, 개인이든 조직이든 그 밀도를 얼마나 높이느냐. 지능 시대의 잠재력은 지금 경험하는 것보다 정말 정말 클 것이고, 밀도를 높이는 쪽만 살아남는다.</p>
+  <p>밀도를 높인 회사의 예가 트위터를 만들고 지금은 블록을 운영하는 잭 도시의 "From finite to intelligence".</p>
+  <div class="dg">
+    <div class="vs flow">
+      <div class="col">
+        <div class="pill"><i>지금 회사</i><b>정보 흐름의 총집합</b></div>
+        <div class="box ghost">
+          <span>사장-부사장-팀장-사원 위계</span>
+          <span>로마 군대의 2000년 전 편제를 그대로 들고 있다</span>
+          <span>정보가 위계를 타고 오르내린다</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="col">
+        <div class="pill hi"><i>AI 중심 회사</i><b>월드 모델이 중심</b></div>
+        <div class="box">
+          <span>슬랙·카톡·이메일, 회사의 모든 기록을 AI가 읽는다</span>
+          <span>회사 하나가 미니 AGI가 된다. AI가 회사 기록을 다 읽고 회사 전체를 대신 답하는 상태</span>
+          <span>중간관리 단계가 사라지고, 대표조차 모든 직원이 무슨 일을 하는지 실시간으로 본다</span>
+        </div>
+      </div>
+    </div>
+    <p class="note">블록은 직원 14,000명 → 9,000명. "밀도를 위한 엄청난 결단."</p>
+  </div>
+
+  <h3>위임 | 무엇을 넘기고 무엇을 남기나</h3>
+  <p>결론부터, 일을 지시하고 위임하는 능력. 6명 조직이지만 기획·글·디자인을 거의 다 직접 한다. 감당이 안 될 때 사람이나 AI에게 넘긴다. 순서는 직접 해보고 → 배분.</p>
+  <div class="dg">
+    <div class="cap">위임 4분면 | 미국 크리에이터 맥브레이의 분류</div>
+    <div class="quad">
+      <div class="ax"></div><div class="ax">위임 가능</div><div class="ax">위임 불가</div>
+      <div class="ax">간단한 일</div><div class="box hi">사람이나 AI를 시켜라</div><div class="box ghost">이 일을 진짜 해야 하는지 다시 생각해봐라</div>
+      <div class="ax">복잡한 일</div><div class="box">좀 더 어려운 사람에게 시켜라</div><div class="box">당신이 해야 한다</div>
+    </div>
+  </div>
+  <ol class="steps lined">
+    <li><b>지난 8주 동안 한 일을 전부 나열한다.</b> 내가 무슨 일을 했는지 그냥 다 적는다. 사람 만나는 일처럼 내키지 않는 일도 빠짐없이.</li>
+    <li><b>일마다 에너지를 주는 일인지, 뺏는 일인지 표시한다.</b></li>
+    <li><b>일마다 자동화 / 제거 / 위임 가능 / 위임 불가 중 하나를 적는다.</b> 기준은 위 4분면. 간단한데 위임이 안 되는 일은 해야 하는 일인지부터 다시 본다.</li>
+    <li><b>제거 가능한 일은 그냥 멈춘다.</b> 애매한데 미래에 도움이 될 것 같은 일을 안 해버리는 게 중요하다.</li>
+    <li><b>위임할 일은 세 가지를 정하고 에이전트를 세팅한다.</b><span class="sub">담당 · 어떤 에이전트가 하나<br>모델 · 어떤 AI 모델을 쓰나. 글쓰기는 A, 이미지는 B<br>빈도 · 얼마나 자주 하나</span>최적의 툴을 찾으면서 자동화한다.</li>
+  </ol>
+  <p>안전선은 하나. <b>직접 해본 적 없는 일은 위임하지 않는다.</b> 기준은 난이도가 아니라 내가 검수할 수 있느냐. 모르는 길에 대해서 통제권을 잃고 싶지 않다.</p>
+
+  <h3>실제로 굴리는 에이전트</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>에이전트</th><th>하는 일</th></tr></thead>
+    <tbody>
+      <tr><td>콘텐츠</td><td>검색 결과에 잘 노출되도록 만든 SEO 콘텐츠를 자동 배포. 유튜브 100% 자율 채널 테스트 중, 하루 3~4번 발행</td></tr>
+      <tr><td>세일즈</td><td>들어오는 이메일에 자동 답장</td></tr>
+      <tr><td>문서</td><td>회사 메신저 슬랙의 대화를 전부 적재 → 회사소개서를 밤사이 스스로 개선 → 홈페이지 반영</td></tr>
+      <tr><td>사내 위키</td><td>회사의 지식을 위키로 쓰고 주 단위로 갱신</td></tr>
+      <tr><td>팀 공용</td><td>구성원 전원이 매일 한 번 같은 화면을 본다 → 누가 어떤 일을 하는지 서로 공유 → AI가 각자의 병목, 일이 막히는 지점을 판단해 "너의 병목은 이럴 것 같아"라고 짚어준다 → 그걸 대화로 풀어 전체가 파악하고 서로 도울 방법을 찾는다 → 각자 하루에 할 일을 받는다. AI가 도울 수 있는 자동화를 스스로 제안하고 나에게 일을 지시하는 구조</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>쓰는 도구</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td>Codex</td><td>에이전트를 만들어 실행하는 도구</td></tr>
+      <tr><td>Aside 브라우저</td><td>정부 지원 사업 신청, 앱 출시처럼 귀찮고 힘든 웹 작업. 브라우저 자동화 도구 플레이라이트 MCP보다 100배는 빠르다</td></tr>
+      <tr><td>슬랙</td><td>에이전트와 대화하는 창구. 회의록도 여기로</td></tr>
+      <tr><td>Arize Phoenix</td><td>에이전트 평가·모니터링</td></tr>
+      <tr><td>플라우드 노트</td><td>회의 녹음 기기. 기록의 시작점</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>거버넌스 | 에이전트가 많아지면</h3>
+  <p>에이전트가 5개, 10개로 늘면 하나를 잘 만드는 것보다 <b>여러 개를 어떻게 관리하느냐</b>가 문제가 된다. 문제가 "어떻게 만들까"에서 "어떻게 관리하고 받을까"로 옮겨간 것. 이것이 거버넌스.</p>
+  <p>규모는 계속 커진다. OpenAI는 1만 개를 돌렸고, 개인도 500~1,000개까지 굴리게 될 것이다.</p>
+  <div class="dg">
+    <div class="vs flow">
+      <div class="col">
+        <div class="pill"><i>대기업이 커질 때</i><b>사람이 5천 명, 10만 명</b></div>
+        <div class="box ghost">
+          <span>사람을 늘리려면 월급 같은 보상이 필수</span>
+          <span>그래서 회장이 아니면 못 갖는 구조</span>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <div class="col">
+        <div class="pill hi"><i>개인이 AI로 커질 때</i><b>에이전트 500~1,000개</b></div>
+        <div class="box">
+          <span>AI에게는 보상을 줄 이유가 없다</span>
+          <span>남는 제약은 하나, 배치하고 관리하는 내 능력</span>
+          <span>내가 SK 회장이라면 어떻게 했을까</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>그 관리 방법이 개인 LLMOps. 에이전트를 한두 번 쓸 때는 관리가 필요 없다. 매일 반복해서 돌리기 시작하면 결과가 흔들리고 틀리기 시작하고, 그때부터 아래 순환이 필요하다.</p>
+  <div class="dg">
+    <div class="cap">개인 LLMOps 루프</div>
+    <div class="chain">
+      <div class="box">① 기록<small>하루의 모든 일상</small></div><div class="arr">→</div>
+      <div class="box">② 프라이빗 벤치마크<small>이 일엔 어떤 모델이 좋은지</small></div><div class="arr">→</div>
+      <div class="box">③ 배치<small>골라서 실제로 돌린다</small></div><div class="arr">→</div>
+      <div class="box">④ 평가<small>잘 수행했는지 검사</small></div><div class="arr">→</div>
+      <div class="box">⑤ 모니터링<small>뭐가 실패하고 뭐가 충족됐나</small></div>
+    </div>
+    <div class="ret"><span>다시 기록으로</span></div>
+    <p class="note ret-note">⑤ 모니터링 결과가 다시 ① 기록으로 들어간다.</p>
+  </div>
+  <p><b>기록</b>이 제일 중요. 그래서 회의용 에이전트 제품을 직접 만들어 테스트 중. 회의를 녹음하면 회의록과 후속 작업을 하는 에이전트가 만들어진다. 회의록 → 슬랙 → 슬랙에서 대화.</p>
+  <p><b>프라이빗 벤치마크.</b> 최고 모델이 항상 정답이 아니다. "이 일에 제일 좋은 모델이 뭐야?" 물어 추천을 받고, 실제로 돌려보고 평가해서 고른다. 개인정보 마스킹 수준의 간단한 일에 매번 최고가 모델은 엄청난 돈 낭비.</p>
+  <p><b>평가와 모니터링.</b> 잘 만들어도 항상 잘 되는 건 아니니 어디서 틀렸는지 추적할 수 있어야 한다. 법률·의료 작업은 2회 검증.</p>
+  <p>도구는 Arize Phoenix. 에이전트의 입력·출력·실패 지점을 기록하고 채점하는 공개 도구. 일을 시켜보고, 검사를 시켜보고, 그 일을 진짜로 잘 수행하는지 본다.</p>
+
+  <h3>결론 | AI를 잘 쓴다는 것</h3>
+  <div class="dg">
+    <div class="sum">
+      <div class="col">
+        <div class="pill hi"><b>스페셜티</b></div>
+        <div class="box"><span>자기만의 전문성</span></div>
+      </div>
+      <div class="plus">+</div>
+      <div class="col">
+        <div class="pill hi"><b>시스템적 사고</b></div>
+        <div class="box"><span>내가 대기업 회장이 될 수도 있겠다고 생각하고 일을 설계하는 것</span></div>
+      </div>
+    </div>
+  </div>
+  <p>테슬라 오토파일럿과 ChatGPT를 초기부터 실제로 만든 개발자 카파시조차 "두렵다, 너무 빠르다." 답은 파도 위에서 균형을 잡는 것. 인간보다 특별한 존재는 없다. 그럼에도 정복당하지 말고 정복하는 존재가 되어야 한다.</p>
+  <hr class="sep">
+  <h3>스스로에게 던질 질문</h3>
+  <ol class="steps">
+    <li>나는 4단계 중 어디에 있나. 2에서 3으로 넘어가려면 지금 뭘 만들어야 하나.</li>
+    <li>지난 8주에 한 일을 다 적으면 몇 개인가. 그중 그냥 멈춰도 되는 것은 몇 개인가.</li>
+    <li>내가 위임한 일 중 내가 직접 해본 적 없는 일은 없나.</li>
+    <li>내가 없는 밤사이에 스스로 굴러가는 판이 하나라도 있나.</li>
+  </ol>
+</section>
+
+<!-- ═══════════ 03 ═══════════ -->
+<section class="part" id="p3" role="tabpanel" aria-labelledby="tab-p3" hidden>
+  <div class="eyebrow">03 / Table</div>
+  <h2>테이블 토크 | 열두 문제와 해결 방법</h2>
+
+  <div class="prob"><h4><span>1</span>담당자가 빠지면 노하우가 사라진다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>대행사는 클라이언트와의 소통이 담당자 한 명 안에 들어 있다. 기획→디자인→제작으로 넘길 때마다 그 사람 머릿속에만 남는 것이 생기고, 그 사람이 나가면 다 날아간다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li>단계를 쪼개 넘기지 않고 <b>한 사람이 처음부터 끝까지</b> 한다. 넘기는 지점이 없으면 새는 곳도 없다.</li><li>그 사람이 일하는 순서를 <b>사이트 하나에 전부 적어 둔다.</b> 누가 와도 그 페이지를 보고 그대로 할 수 있게.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>2</span>스킬을 만들어뒀는데 AI가 안 쓴다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>유튜브에서 본 대로 자주 하는 일을 스킬(지시서)로 만들어 뒀는데, 막상 일을 시키면 AI가 그 스킬을 꺼내지 않고 매번 새로 한다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li>스킬을 하나 더 만들어, 일을 시작할 때 항상 첫 명령으로 넣는다. <b>"내가 갖고 있는 스킬을 무조건 한 번 확인한 다음 실행해."</b></li><li>스킬만 모아 둔 폴더를 따로 만들고, 스킬마다 <b>"이런 상황이면 이 스킬"</b>이라는 조건을 같이 적어 둔다. 이게 없으면 나도 언제 뭘 써야 할지 감이 안 온다.</li></ul>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li><b>덜어내기</b> : 내 일에서 반복되는 것만 스킬로 만든다. 주 1회 점검해서 안 쓰는 스킬은 지운다. 많으면 관리가 안 되고, 기억 못 하면 안 쓴다.</li><li><b>펼쳐두기</b> : 유명한 분이 만든 기획자 스킬 50개를 받아 10개 분류로 정리해 뒀다. 당시엔 안 썼지만 신사업으로 옮기며 경쟁사 분석이 필요해지자 바로 꺼냈다.</li><li><b>공유하기</b> : 팀원끼리 링크로 주고받으니 관리가 안 됐다. 스킬 모음 페이지를 웹에 만들고 "지금은 이것만 가져가면 된다"고 골라주는 것까지 붙였다.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>3</span>세션은 쌓이는데 배운 게 남지 않는다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>하루에 세션(AI와 일하는 창)을 5~10개 쓴다. 거기서 해결한 것과 결정한 것이 다음 세션으로 넘어가지 않는다. 잘 쌓이고 있는지조차 판단이 안 된다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li><b>"배운 것 뽑기" 스킬</b>을 만들어, 세션을 끝낼 때 무조건 한 번 돌린다. "이 세션은 더 얘기할 게 없다" 싶을 때 실행. 끝나는 시점 판단만 사람이 한다.</li><li><b>시간을 고정한다</b> : 매일 18:30에 그날 세션을 읽어 헷갈렸던 것·몰랐던 것을 정리하고, 사람이 한 번 눈으로 확인한 뒤 저장한다.</li><li>주 1회 아침에 한 번 더 돌아본다.</li></ul>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <p>도서관과 사서 : 원본 파일을 한곳(옵시디언 같은 메모 앱)에 두고, 세션마다 배운 것과 결정을 거기에 연결한다. AI가 사서처럼 꺼내준다. 100% 자동은 아니고 반자동. 연결이 틀어질 수 있어 사람이 주기적으로 본다.</p>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>4</span>AI를 못 믿겠다 | 어디까지 검증하나</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>코드를 공부한 사람이 아니면 AI가 만든 코드나 수치가 맞는지 직접 확인할 수 없다. 새 도구가 좋다고 하면 써 보고, 결국 쓰던 것으로 돌아오기를 반복한다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li>검증을 겹으로 쌓는다 : <b>Claude가 만들고 → Codex가 확인하고 → Codex가 한 번 더 확인</b>. 확인하는 것은 수치가 원본과 맞는지, 빠진 항목이 없는지, 양식이 어긋나지 않았는지.</li></ul>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li><b>일마다 잘하는 AI를 배정.</b> "에이전트마다 잘하는 스포츠가 있다." 글은 A, 코드는 B. 최근엔 AI 전용 컴퓨터를 주는 도구(Grok Bot)로 화면 테스트를 자체 환경에서 돌린다.</li><li><b>터미널 중심 + 외부는 이미지·화면만</b> : 코드는 터미널(검은 창)에서 하고, 그림이나 화면을 뽑을 때만 외부 도구를 쓴다.</li><li>갈린 지점 : 못 믿어서 AI를 바꾸는 쪽은 검토 비용을 내고, 더 잘해서 바꾸는 쪽은 성능을 얻는다. 모델별로 비교해 본 쪽과 안 해 본 쪽이 여기서 갈렸다.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>5</span>혼자서는 되는데 조직에 넣으면 막힌다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>혼자 할 때 됐던 것이 조직에서는 마찰이 너무 많다. 여러 사람이 같은 파일을 쓰면 섞여서 망가진다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li><b>"상황 파일"을 부서별로 만든다</b> : 엔지니어링용, 마케팅용. 각 파일에 그 부서가 필요한 자료를 다 넣고, AI들이 그 파일을 보게 한다.</li><li>통째로 나눠주지 않는다. <b>스킬로 만들어서 "이걸 써"</b>라고 배포한다.</li></ul>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li><b>막히는 곳은 사람의 결정이다.</b> 개발자 셋이 각자 AI를 만들어 잘 굴러간 팀은 전략이 정해져 있어 결정할 게 없었다. 한 명이라도 고민하면 그 사람이 병목이 되고 전체가 멈춘다.</li><li><b>자리를 뺀다</b> : 개발자 십여 명과 퍼블리셔가 있던 팀에서, 기획·개발 2인 또는 디자인·개발 2인만 두고 나머지는 AI. 한 달 만에 출시. 품질은 어느 정도 감수하고 여러 사업을 동시에 시도해 하나라도 나오면 되는 구조.</li><li><b>기존 조직 옆에 새 팀을 만든다.</b> 기존 조직은 안 바뀐다. 돈을 벌려면 AI로 콘텐츠를 만들어야 하는 회사처럼 강제력이 있는 곳은 다르다.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>6</span>기획과 디자인 사이가 제일 막힌다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>개발자는 결과를 검토만 하는 구조가 되자, 남은 병목이 기획과 디자인 사이로 드러났다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p>기획자가 만든 화면 구성도와 "내가 AI에게 시키는 말"을 <b>문서(MD 파일)로 만들어 전달</b>한다. 기획자의 결과물이 곧 시안 화면처럼 나오게.</p>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <p>기획 문서와 디자인 결과물이 <b>같은 원본 하나</b>를 보게 하고, 하나가 바뀌면 반대쪽이 따라 바뀌게 한다. 그런데 각자 자기 도구를 쓰니 따로 관리되고 어긋난다. 개발자가 세팅해 주면 되지만, 기획자가 쓰던 도구를 버리고 새 도구를 배워야 하면 의미가 없어진다.</p>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>7</span>대기업의 벽 | 보안·비용·규제</h4>
+    <div class="kv"><b>문제</b><div>
+    <ul><li>보안 : 회사 데이터가 클로드 같은 외부 AI로 나가는 게 쉽지 않다.</li><li>데이터 접근 : "왜 그 데이터를 보려고 하시죠?" 이유를 설명해야 한다.</li><li>비용 : 쓴 만큼 내는 요금(API)은 관리가 안 되면 하루아침에 크게 결제된다. 끊은 사람이 여럿.</li><li>규제 : 파견 간 대기업에서 AI를 하나도 못 쓰게 한다. 반대로 금요일마다 하루 종일 AI만 만지는 회사도 있다.</li></ul>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p>데이터를 못 보게 할 때 요청을 바꿨다. <b>"제가 직접 접근하는 게 부담스러우시면, AI가 읽을 수 있는 통로만 만들어 주세요." 회사 데이터와 AI를 연결하는 통로, MCP.</b> 그 통로와 구글 애널리틱스 데이터로 팀용 데이터 위키를 만들어 공유했다. 권한을 달라고 싸우는 대신 통로를 제안한 것.</p>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li>보안이 제일 심한 곳은 API 키 관리를 따로 두고 균형을 잡는다. 속도도 얻고 보안도 지킨다.</li><li>회사 밖으로 데이터가 나가는 게 걱정이면 회사 컴퓨터 안에서 도는 AI(로컬 LLM)를 검토한다.</li><li>연차 있는 디자이너들은 AI를 쓸 수 있는 회사로 이직을 알아본다.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>8</span>디자인 기준이 없는데 화면은 계속 나온다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>서점 스타트업. 디자인 기준이 정의된 게 없고 사이트와 앱이 다 다르다. 게다가 개발자가 2.5개월간 피그마를 열지 않았다 : 디자인만 쌓이고 아무것도 구현되지 않았다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p><b>① 기준을 세운다</b></p>
+    <ol class="steps">
+      <li>AI에게 시켜 지금 화면들의 <b>공통 요소를 뽑는다.</b></li>
+      <li>개발자에게 "이 기준으로 가겠다"고 논의를 요청한다.</li>
+      <li>합의한 기준을 <b>문서로 적고</b>, 거기 포함되는 것을 다시 뽑는다. 반복해서 정확도를 올린다.</li>
+      <li>규칙의 기준은 정부 디자인 가이드를 따르게 하고, 우선순위를 정부 가이드 → 우리 웹사이트 → 피그마 파일 순으로 둔다.</li>
+      <li>여백·글자 크기 같은 것은 글로 보면 스트레스라 <b>"개발자 모드처럼 시각화해서 보여줘"</b>라고 시킨다. 이 요소는 어떻게 고쳐야 하고, 모바일에선 어떻게 되는지까지 밑에 정리하게.</li>
+    </ol>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p><b>② 피그마를 없앤다</b></p>
+    <blockquote class="sm">이건 병목이다. 디자인만 잔뜩 나왔는데 아무것도 안 들어갔다. 우리 스타트업 아니냐.<cite>6개월차 디자이너</cite></blockquote>
+    <ol class="steps">
+      <li>위 말을 대표에게 직접 했다. 대표의 결정은 "그럼 피그마 없이 가보자."</li>
+      <li>Claude Design으로 만든 결과물을 웹페이지 파일(HTML) 그대로 개발자에게 준다. 개발자는 그 파일만 보고 구현한다.</li>
+      <li>단, 한꺼번에 주지 않고 <b>우선순위대로 섹션을 끊어서</b> 전달한다.</li>
+      <li>시안은 A안·B안·C안을 만들어 두고 "왜 A안으로 가는지"를 설명한다. 그 과정에서 세운 가설과 결정이 기록으로 남는다.</li>
+    </ol>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <p><b>시니어 디자이너의 방법</b></p>
+    <ol class="steps">
+      <li>디자인 방향과 원칙을 미리 문서로 정리해 둔다.</li>
+      <li>참고 이미지를 여러 방향으로 준다.</li>
+      <li>그 이미지에서 <b>"내가 뭐가 좋았는지"를 AI에게 기록하게 한다.</b> 사람도 좋은 걸 많이 보라고 하듯 AI에게도 좋은 걸 많이 보여줘야 한다.</li>
+      <li>그 방향으로 변형안을 여러 개 뽑게 한다.</li>
+      <li>캔버스에 깔린 것 중 괜찮은 것만 고른다. 손으로 만지고 싶으면 AI 디자인 캔버스(Pencil)를 같이 쓴다.</li>
+    </ol>
+    <p>결과물은 레이어가 분리된 채 나와 나중에 피그마로 옮길 수도 있다.</p>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>9</span>테스트(QA)에 시간이 다 간다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>디자인이 끝나면 화면이 제대로 되는지 확인하는 테스트를 아주 많이 해야 한다. 모두가 하기 싫은 일이고 시간이 제일 많이 든다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p>확인할 항목(테스트 케이스)을 목록으로 주면 <b>AI가 다 돌려보고 결과를 정리해 온다.</b> 사람은 판단이 필요한 것만 골라서 본다.</p>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>10</span>사람이 안 바뀐다</h4>
+    <div class="kv"><b>문제</b><div>
+    <ul><li>경력자가 제일 못 받아들인다. AI의 첫 결과는 내 수준보다 못한 게 당연한데, 그 시행착오를 못 견디고 "결국 사람이 해야 한다"로 결론 낸다.</li><li>실무자의 박탈감. 촬영을 잘할 자신이 있는데 AI 결과가 나올 때까지 기다리고 있는 자신이 싫다.</li></ul>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p><b>잃을 것이 없는 쪽이 먼저 말한다.</b> 6개월차는 "저 이거 하고 싶어요"를 바로 말할 수 있다. 책임이 없으니까. 경영자는 결과 책임 때문에 더 걱정한다 : 해보지 않아서 막연히 두려운 것.</p>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li><b>채용 질문을 바꾼다</b> : "이 서비스를 만들 때 AI 과정을 어떻게 짰나", "디자인 기준을 AI로 어떻게 잡았나".</li><li><b>기획자와 디자이너를 엮는다</b> : 각자 쓰는 AI 스킬이 다르니 "기획자의 이 반복 작업, 디자이너랑 같이 방법을 찾아보자"고 붙인다.</li><li><b>신입은 작은 프로젝트를 2개씩</b> 늘 해보고, 회사에 쓸 만한 것만 가져온다.</li><li><b>커뮤니티를 바꾼다</b> : 디자이너 모임 대신 개발자 모임에 간다. 그들이 가진 게 많고, 디자인·기획 질문의 답이 거기 있다.</li><li>강의 들을 시간이 없어 SQL을 못 배울 때 : 쿼리 하나를 AI에게 주고 분해해 설명하게 한 뒤 응용 문제를 내달라고 한다. 매일 아침 하나씩.</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>11</span>콘텐츠는 만들었는데 안 터진다</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>AI로 만든 콘텐츠는 수명이 짧다 : 길어야 한 달. 그 안에 광고를 걸어 본전을 뽑아야 하는데 초반 반응이 안 좋았다. 레이싱 소재 숏드라마를 만들었는데 아무도 레이싱에 관심이 없었다.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <ul><li><b>첫 장면을 통째로 갈아끼운다.</b> 하루도 안 돼 바꿔 다시 올리니 수치가 반등. 사람이 찍은 영상이라면 못 바꾸거나 비용이 엄청났을 일.</li><li>터지는 소재는 연애물 : 전 남친·전 여친, 알고 보니 주인공이 남자 셋과 다 얽혀 있었다는 반전.</li><li>이 문법은 TV 드라마 상식과 다르다. 드라마 작가·PD를 데려와도 안 됐다.</li></ul>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li>제작 전부 AI : 대본·이미지·영상. 인물의 정면·측면 사진을 미리 뽑아 두고 영상을 만든다. 영상 AI는 여러 개를 가격 비교하며 쓴다. 외부 도구가 느려서 개발자에게 전용 도구를 만들어 달라고 했다.</li><li>물량 : 중국은 광고 소재를 하루 100개 만든다. 하나 만들면 변형을 몇십 개 찍어 돌린다. 새것을 할 때는 중국 시장을 봐야 한다.</li><li>품질 선 : 물량으로 찍으면 번역이 어색해지는데 유저는 재밌으면 넘어간다. "우리는 엄청 신경 쓰는데 무슨 의미인가, 30분 빨리 나가는 게 낫지 않나" vs "브랜드는 안 된다."</li></ul>
+    </div></div>
+  </div>
+
+  <div class="prob"><h4><span>12</span>AI로 다 만들 수는 없다 | 선 긋기</h4>
+    <div class="kv"><b>문제</b><div>
+    <p>클라이언트가 대기업이면 "문제 나면 절대 안 된다." AI로 만들었다는 표시, 법적 검토에 매우 민감하다. 결국 위험 관리의 문제.</p>
+    </div></div>
+    <div class="kv"><b>해결 방법</b><div>
+    <p><b>분야별로 선을 긋는다</b></p>
+    <div class="tbl"><table>
+      <thead><tr><th>AI로 해도 되는 것</th><th>안 되는 것</th></tr></thead>
+      <tbody>
+        <tr><td>반복·자동화 작업</td><td>화장품 발색 : 사람이 발라야 발색인데 AI로 했다면 말이 안 된다</td></tr>
+        <tr><td>광고 소재를 여러 버전으로 찍는 것</td><td>아기·아동 모델 : 아이가 그 옷을 입은 게 가짜면 걸린다</td></tr>
+        <tr><td>개인이 하는 AI 인플루언서</td><td>브랜드가 하는 AI 인플루언서 : 거부감이 생긴다</td></tr>
+        <tr><td>첫 장면 교체 같은 사후 수정</td><td>글로벌 브랜드 : 촬영·광고 승인 체계를 거쳐야 한다</td></tr>
+      </tbody>
+    </table></div>
+    </div></div>
+    <div class="kv"><b>다른 방법</b><div>
+    <ul><li>숏폼을 AI로 만들다 배우 얼굴이 컷마다 달라져 계속 걸렸다. AI 배우를 만들면 저작권·초상권 문제가 또 따라온다. 그래도 거부감은 줄고 비용은 크게 아낀다.</li></ul>
+    </div></div>
+    <div class="kv"><b>사람에게 남는 것</b><div>
+    <blockquote class="sm">저 사람이 이 글을 끝까지 읽을 걸 생각하면, 한 번 더 정리해서 보내요.<cite>시니어 디자이너</cite></blockquote>
+    <ul><li><b>검수와 배려</b> : AI로 만들어 검수 없이 넘기는 글이 너무 많고, 받은 사람도 검수 없이 또 넘긴다. 그런 배려가 점점 귀해진다.</li><li><b>호기심</b> : 놀라운 AI가 나올 때마다 "내가 그만큼 어려운 문제를 풀고 있나"가 아쉽다. AI는 엄청 발전했는데 나는 너무 작은 문제만 풀고 있는 건 아닐까. 어릴 때부터 AI와 대화하며 자란 아이들이 10년 뒤 만들 것이 기대된다.</li></ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 04 ═══════════ -->
+<section class="part" id="p4" role="tabpanel" aria-labelledby="tab-p4" hidden>
+  <div class="eyebrow">04 / Appendix</div>
+  <h2>AI Tools &amp; Channels</h2>
+
+  <h3>내 대신 브라우저·컴퓨터를 조작하는 AI</h3>
+  <p>내 브라우저나 AI 전용 컴퓨터 안에서 직접 클릭하고 입력한다. 연동 기능이 없는 사이트도 사람처럼 쓴다.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="nm">Aside<em>AI 브라우저</em></div>
+      <div class="kv"><b>무엇</b><span>한국인 창업팀이 만든 웹브라우저. 보통 브라우저인데 주소창 옆에 "일 시키는 칸"이 하나 더 있다. "어제 본 지원자 찾아서 면접 노트 정리해줘"라고 적으면 브라우저가 알아서 사이트를 오가며 끝내고 결과만 가져온다</span></div>
+      <div class="kv"><b>이럴 때</b><span>정부지원사업 신청처럼 여러 사이트에 로그인해 양식을 채우는 일, 앱 출시 등록, 대시보드 확인 후 답장하기</span></div>
+      <div class="kv"><b>다른 점</b><span>따로 연동을 만들 필요 없이 <strong>이미 로그인된 내 계정 그대로</strong> 일한다. 반복 작업은 한 번 등록해 두면 자동으로 돈다. 비밀번호는 AI에 보여주지 않고 내 컴퓨터 안에서만 채운다</span></div>
+      <a class="lk" href="https://aside.com" target="_blank" rel="noopener">aside.com</a>
+    </div>
+    <div class="card">
+      <div class="nm">Grok Bot<em>24시간 도는 AI</em></div>
+      <div class="kv"><b>무엇</b><span>일론 머스크의 xAI가 2026년 8월 낸 AI. 사용자마다 <strong>브라우저·파일·터미널이 갖춰진 클라우드 컴퓨터</strong>를 한 대 준다. 내가 자리를 떠도 AI가 그 컴퓨터 안에서 계속 일한다</span></div>
+      <div class="kv"><b>이럴 때</b><span>시험용 웹사이트에 접속해 화면을 하나하나 눌러보며 오류를 찾는 테스트. 밤새 돌려두는 긴 작업</span></div>
+      <div class="kv"><b>다른 점</b><span>다른 AI는 일할 때마다 새 컴퓨터를 켜서 상태가 사라지는데, 이건 <strong>상태가 남는 내 컴퓨터</strong>다. SuperGrok Heavy·Cursor Ultra 구독에 포함</span></div>
+      <a class="lk" href="https://x.ai" target="_blank" rel="noopener">x.ai</a>
+    </div>
+  </div>
+
+  <h3>AI를 여러 개 굴릴 때 쓰는 것</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="nm">Hermes Agent<em>에이전트 만드는 틀</em></div>
+      <div class="kv"><b>무엇</b><span>Nous Research가 무료로 공개한 소프트웨어. 내 서버에 설치해서 AI 에이전트를 여러 개 만든다. 에이전트마다 설정·성격·기억·예약 작업을 따로 가진다</span></div>
+      <div class="kv"><b>이럴 때</b><span>글 쓰는 AI, 메일 답하는 AI, 자료 정리하는 AI를 각각 따로 두고 텔레그램·슬랙으로 대화하고 싶을 때</span></div>
+      <div class="kv"><b>다른 점</b><span><strong>에이전트마다 다른 AI 모델</strong>을 붙일 수 있다(글은 Claude, 정리는 싼 모델). 일을 끝내면 스스로 스킬을 만들어 다음에 재사용한다. 월 몇 천 원짜리 서버에서도 돈다. 오픈클로와 같은 자리의 도구</span></div>
+      <a class="lk" href="https://hermes-agent.nousresearch.com" target="_blank" rel="noopener">hermes-agent.nousresearch.com</a>
+    </div>
+    <div class="card">
+      <div class="nm">Arize Phoenix<em>AI 채점판</em></div>
+      <div class="kv"><b>무엇</b><span>무료 공개 도구. AI가 무엇을 받아서 무엇을 냈는지 전부 기록하고, 정해 둔 기준에 맞는지 점수를 매겨 화면으로 보여준다</span></div>
+      <div class="kv"><b>이럴 때</b><span>AI가 매일 만드는 보고서·답장이 어느 날 갑자기 이상해졌을 때 어디서부터 틀렸는지 찾기. 같은 일을 여러 AI 모델에 시켜 어느 게 내 기준에 맞는지 비교하기</span></div>
+      <div class="kv"><b>다른 점</b><span>AI마다 <strong>성공/실패를 눈으로</strong> 본다. "잘 되는 것 같다"가 아니라 숫자로</span></div>
+      <a class="lk" href="https://phoenix.arize.com" target="_blank" rel="noopener">phoenix.arize.com</a>
+    </div>
+  </div>
+
+  <h3>디자인 | 피그마 없이 화면 만들기</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="nm">Claude Design<em>AI 시안</em></div>
+      <div class="kv"><b>무엇</b><span>Anthropic이 2026년 4월 연 시각 작업 공간(Pro 이상 구독자). "이런 화면 만들어줘"라고 말하면 웹페이지·앱 화면·슬라이드·한 장 문서를 만들고, 마음에 안 드는 부분을 직접 고치거나 다시 요청한다</span></div>
+      <div class="kv"><b>이럴 때</b><span>디자이너 없이 화면 시안을 빨리 뽑아 개발자에게 넘길 때. A안·B안·C안을 만들어 비교할 때. 발표 자료</span></div>
+      <div class="kv"><b>다른 점</b><span>내 브랜드 기준을 읽어 <strong>일관된 화면을 웹페이지 파일로</strong> 뽑는다. 개발자가 그 파일을 그대로 쓸 수 있다. 구독에 포함, 추가 요금 없음</span></div>
+      <a class="lk" href="https://claude.ai/design" target="_blank" rel="noopener">claude.ai/design</a>
+    </div>
+    <div class="card">
+      <div class="nm">Pencil (pen.dev)<em>AI 디자인 캔버스</em></div>
+      <div class="kv"><b>무엇</b><span>피그마처럼 생긴 무료 디자인 도구. 다른 점은 <strong>AI가 캔버스를 직접 그린다</strong>는 것. Claude Code나 Codex에 "버튼 3개짜리 화면 그려"라고 하면 캔버스에 틀과 요소를 놓는다</span></div>
+      <div class="kv"><b>이럴 때</b><span>AI가 변형안을 잔뜩 깔아 주면 그중 골라 손으로 다듬고 싶을 때. 디자인과 코드를 같은 곳에서 관리하고 싶을 때</span></div>
+      <div class="kv"><b>다른 점</b><span>AI 결과물을 "받기만" 하는 게 아니라 <strong>사람이 손으로 만질 수 있는 캔버스</strong>가 있다. 디자인 파일이 코드와 한곳에 저장된다</span></div>
+      <a class="lk" href="https://pen.dev" target="_blank" rel="noopener">pen.dev</a>
+    </div>
+  </div>
+
+  <h3>콘텐츠 · 캐릭터 | AI 콘텐츠가 이미 돈이 되는 곳</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="nm">비글루 스튜디오<em>AI 숏드라마 제작</em></div>
+      <div class="kv"><b>무엇</b><span>숏드라마 앱 비글루(스푼랩스)가 2026년 7월 낸 제작 도구. 글로 장면을 설명하면 이미지와 영상을 만들고, 등장인물 얼굴을 시리즈 내내 같게 유지하고, 완성작을 바로 올린다</span></div>
+      <div class="kv"><b>이럴 때</b><span>1~3분짜리 세로 드라마를 사람 촬영 없이 만들 때</span></div>
+      <div class="kv"><b>다른 점</b><span>원래는 외부 도구 15개를 오가며 만들던 것을 <strong>한 곳에서</strong>. 특히 <strong>같은 인물 얼굴이 컷마다 바뀌는 문제</strong>를 관리 기능으로 잡았다</span></div>
+      <a class="lk" href="https://www.vigloo.com" target="_blank" rel="noopener">vigloo.com</a>
+    </div>
+    <div class="card">
+      <div class="nm">스캐터랩 제타<em>AI 캐릭터 대화 앱</em></div>
+      <div class="kv"><b>무엇</b><span>'이루다'를 만든 스캐터랩의 앱. 사용자가 만든 캐릭터와 대화하며 이야기를 이어간다. 가입자 600만 명. 2026년 초 국내 AI 앱 중 이용 시간 1위, 일본에서는 넷플릭스를 제치고 엔터 앱 사용 시간 1위</span></div>
+      <div class="kv"><b>이럴 때</b><span>10대가 어디에 시간을 쓰는지 볼 때. 캐릭터 기반 콘텐츠·광고를 기획할 때</span></div>
+      <div class="kv"><b>다른 점</b><span>초등학생이 <strong>유튜브보다 오래</strong> 쓴다(하루 2~3시간). 회사 스스로 "엔터테인먼트 3.0"이라 부른다. 인스타 광고도 AI 캐릭터로 만든다</span></div>
+      <a class="lk" href="https://zeta-ai.io" target="_blank" rel="noopener">zeta-ai.io</a>
+    </div>
+    <div class="card">
+      <div class="nm">뤼튼 크랙<em>AI 캐릭터 대화 앱</em></div>
+      <div class="kv"><b>무엇</b><span>뤼튼의 캐릭터 대화 앱. 국내는 여성향 이야기가 강하고, 미국용 서비스(OOC)는 게임·소설형으로 장르가 다르다</span></div>
+      <div class="kv"><b>이럴 때</b><span>캐릭터와 서사를 만들어 수익을 내는 "AI 작가" 구조를 볼 때</span></div>
+      <div class="kv"><b>다른 점</b><span>캐릭터를 만든 사람에게 <strong>회사가 돈을 정산</strong>한다. 2026년 9월부터 현금 전환 가능. 매달 정산받는 창작자가 수백 명이고 월 수백만~1천만 원 이상도 있다. 10대 창작자도 있다</span></div>
+      <a class="lk" href="https://crack.wrtn.ai" target="_blank" rel="noopener">crack.wrtn.ai</a>
+    </div>
+    <div class="card">
+      <div class="nm">DramaBox · ReelShort<em>숏드라마 앱</em></div>
+      <div class="kv"><b>무엇</b><span>중국계 세로 숏드라마 앱. 1~3분 에피소드를 무료로 보여주고 뒷 이야기는 결제</span></div>
+      <div class="kv"><b>이럴 때</b><span>숏드라마 문법(첫 장면에서 바로 터지는 구조)을 익힐 때. 물량 마케팅의 기준을 볼 때</span></div>
+      <div class="kv"><b>다른 점</b><span>광고 소재를 <strong>하루 100개</strong>씩 변형해 돌리는 물량과 자본. 새것을 시작할 때 중국 시장을 먼저 봐야 하는 이유</span></div>
+      <a class="lk" href="https://www.reelshort.com" target="_blank" rel="noopener">reelshort.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('nav.top button.t');
+  var panels=document.querySelectorAll('section.part');
+  function show(id,push){
+    var found=false;
+    panels.forEach(function(p){p.hidden=(p.id!==id);if(p.id===id)found=true;});
+    if(!found){id='p1';panels.forEach(function(p){p.hidden=(p.id!==id);});}
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.tab===id?'true':'false');});
+    if(push){try{history.replaceState(null,'','#'+id);}catch(e){}}
+    window.scrollTo({top:0});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab,true);});});
+  document.querySelector('nav.top .brand').addEventListener('click',function(e){e.preventDefault();show('p1',true);});
+  window.addEventListener('hashchange',function(){show(location.hash.replace('#','')||'p1',false);});
+  show((location.hash||'#p1').replace('#',''),false);
+})();
+</script>
+</body></html>
